@@ -70,7 +70,9 @@ module.exports = {
         const updatedAt = new Date().toISOString();
         const index = book.findIndex((book) => book.id === id);
         const finished = (pageCount === readPage);
+
         if (index !== -1) {
+
             if (!name) {
                 return res.status(400).json({
                     status: 'fail',
@@ -142,16 +144,12 @@ module.exports = {
                 status: "success",
                 message: 'Buku berhasil dihapus'
             });
-            response.code(200);
-
-            return response;
         } else {
-            const response = h.response({
+            return res.status(404).json({
                 status: 'fail',
                 message: 'Buku gagal dihapus. Id tidak ditemukan',
             });
-            response.code(404);
-            return response;
+
         }
     }
 }
